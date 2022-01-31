@@ -6,6 +6,7 @@ import {
   addDoc,
   onSnapshot,
   DocumentData,
+  QuerySnapshot,
 } from "firebase/firestore";
 import { Message } from "./types";
 
@@ -25,17 +26,20 @@ const App = (): JSX.Element => {
     addDoc(collection(db, "messages"), newMessage);
   };
 
-  useEffect(() => {
-    onSnapshot(collection(db, "messages"), (collection) => {
-      const currentMessages: Message[] = collection.docs.map(
-        (doc: DocumentData): Message => ({
-          id: doc.id,
-          ...doc.data(),
-        })
-      );
+  useEffect((): void => {
+    onSnapshot(
+      collection(db, "messages"),
+      (collection: QuerySnapshot<DocumentData>): void => {
+        const currentMessages: Message[] = collection.docs.map(
+          (doc: DocumentData): Message => ({
+            id: doc.id,
+            ...doc.data(),
+          })
+        );
 
-      setMessages(currentMessages);
-    });
+        setMessages(currentMessages);
+      }
+    );
   }, []);
 
   return (
