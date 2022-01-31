@@ -10,10 +10,12 @@ import {
 } from "firebase/firestore";
 import { Message } from "./types";
 
+const getRandomUser = (): string => "User " + Math.floor(Math.random() * 100);
+
 const App = (): JSX.Element => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [text, setText] = useState<string>("");
-  const user: string = "User " + Math.floor(Math.random() * 100);
+  const [user] = useState<string>(getRandomUser());
 
   const onChange = ({
     currentTarget,
