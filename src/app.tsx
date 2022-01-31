@@ -26,6 +26,7 @@ const App = (): JSX.Element => {
     e.preventDefault();
     const newMessage: Message = { user, text };
     addDoc(collection(db, "messages"), newMessage);
+    setText("");
   };
 
   useEffect((): void => {
@@ -63,9 +64,9 @@ const App = (): JSX.Element => {
         <ul>
           {messages.map((message, index) => (
             <li key={index} class="rounded-md bg-blue-100 my-3 p-2">
-              <h4 class="text-sm">
+              <h2 class="text-sm">
                 <strong class="font-extrabold">{message.user}</strong> says:
-              </h4>
+              </h2>
               <p>{message.text}</p>
             </li>
           ))}
