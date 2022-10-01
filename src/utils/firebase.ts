@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
-import { FBConf } from "./types";
+import { FBConf } from "../types";
 
-// import.meta.env.VITE_KEY - legge il valore di una chiave nel file .env
+// import.meta.env.VITE_KEY - environment variables from .env file
 // https://create-react-app.dev/docs/adding-custom-environment-variables/
 
 const firebaseConfig: FBConf = {
@@ -16,7 +16,7 @@ const firebaseConfig: FBConf = {
 
 initializeApp(firebaseConfig);
 
-// Riferimento al database
+// Database reference
 const db: Firestore = getFirestore();
 
 export { db };
