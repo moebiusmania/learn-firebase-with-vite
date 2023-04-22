@@ -1,4 +1,4 @@
-name: Deploy React App to GH pages
+name: Deploy Vite App to GH pages
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [19.6]
+        node-version: [20.0]
 
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +24,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_VITE_APPID: ${{ secrets.VITE_APPID }}
+          envkey_VITE_PROJECTID: ${{ secrets.VITE_PROJECTID }}
           file_name: .env
 
       - run: npm ci
